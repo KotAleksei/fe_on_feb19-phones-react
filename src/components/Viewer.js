@@ -16,14 +16,14 @@ export class Viewer extends React.Component {
     }
     render() {
       
-      const { onBack, phone: { name, description, images } } = this.props,
+      const { onBack, phone: { name, description, images }, addInShopping } = this.props,
             { mainPhoto } = this.state;
-      console.log(this.props);
+      console.log("VIEWER: ", this.props);
       return (
         <div>
           <img className="phone" src={mainPhoto} alt='Main_photoPhone' />
           <button onClick={onBack}>Back</button>
-          <button>Add to basket</button>
+          <button onClick={() => addInShopping()}>Add to basket</button>
   
           <h1>{name}</h1>
           <p>{description}</p>
