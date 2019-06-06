@@ -9,16 +9,16 @@ class ShoppingCart extends React.Component {
   }
 
   render(){
-    const { removeItem } = this.props;
+    const { removeItem, cards } = this.props;
     return (
       <section>
-        <p>Shopping Cart</p>
-        <ul>
+        <p className='tittle_shoping_card'>Shopping Cart: {cards ? cards.length : 0} Items</p>
+        <ul className='shopingCardList'>
           {
-            this.props.cards && this.props.cards.map((el,idx) => (
-              <li key={idx}>
-                {el}
-                <button onClick={() => removeItem(idx)}>Remove</button>
+            cards && cards.map((el,idx) => (
+              <li key={idx} className='shopingCardItem'>
+                <span className='shopinCardName'>{el}</span>
+                <button onClick={() => removeItem(idx)} className='removeButn'>Remove</button>
               </li>
             ))
           }

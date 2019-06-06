@@ -15,9 +15,16 @@ export class Viewer extends React.Component {
       })
     }
     render() {
-      
-      const { onBack, phone: { name, description, images }, addInShopping } = this.props,
-            { mainPhoto } = this.state;
+      const { 
+        onBack, 
+        phone: { 
+            name, 
+            description, 
+            images 
+        }, 
+        addInShopping 
+        } = this.props,
+        { mainPhoto } = this.state;
       console.log("VIEWER: ", this.props);
       return (
         <div>
