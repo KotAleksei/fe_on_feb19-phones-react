@@ -45,7 +45,6 @@ class App extends React.Component {
               { this.state.selectedPhone ? (
                 <Viewer
                   phone={this.state.selectedPhone}
-                  phones={this.state.phones}
                   onBack={() => {
                     this.setState({
                       selectedPhone: null,
