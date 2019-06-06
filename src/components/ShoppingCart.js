@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Basket = () => {
+const ShoppingCart = () => {
   return (
     <section>
       <p>Shopping Cart</p>
@@ -13,4 +13,4 @@ const Basket = () => {
   );
 };
 
-export default Basket;
+export default ShoppingCart;
