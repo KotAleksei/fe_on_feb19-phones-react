@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getAll, getById } from './api/phone'
+import { getAll, getById } from './api/phone';
 import ShoppingCart from './components/ShoppingCart'
 import Filter from './components/Filter'
 import Catalog from './components/Catalog'
@@ -12,18 +12,39 @@ import './App.css';
 class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       phones: getAll(),
       selectedPhone: null,
-      shoppingCardItems: [],
-      namePhone: null
+      shoppingCardItems: {}
     };
   }
-
+  removeItem = (phoneID) => {
+    const copy = { ...this.state.shoppingCardItems };
+    let count = copy[phoneID] || 0;
+      if( count > 1)
+        --copy[phoneID];
+      else 
+        delete copy[phoneID];
+    this.setState({
+      shoppingCardItems: copy
+    })
+    console.log('SLPH: ', count);
+  }
+  addInShopping = (phoneID) => {
+    const copy = { ...this.state.shoppingCardItems },
+          count = copy[phoneID] || 0;
+          copy[phoneID] = count + 1;
+    this.setState({
+      shoppingCardItems: copy
+    });
+  }
+  selectedPhone = (phoneID) => {
+    this.setState({
+      selectedPhone: getById(this.state.phones, phoneID),
+    });
+    console.log(getById(this.state.phones, phoneID));
+  }
   render() {
-    console.log(this.state.shoppingCardItems);
-    // const { phones } = this.state;
     return (
       <div className="App">
         <div className="container-fluid">
@@ -32,12 +53,8 @@ class App extends React.Component {
               <Filter />
               <ShoppingCart 
                 cards={this.state.shoppingCardItems}
-                removeItem={(idx) => {
-                  this.state.shoppingCardItems.splice(idx,1)
-                  this.setState({
-                    shoppingCardItems: this.state.shoppingCardItems
-                  
-                })}}
+                removeItem={this.removeItem}
+
               />
             </div>
 
@@ -48,29 +65,17 @@ class App extends React.Component {
                   onBack={() => {
                     this.setState({
                       selectedPhone: null,
-                      namePhone: null
                     });
                   }}
-                  addInShopping={() => {
-                    this.setState({
-                      shoppingCardItems: this.state.shoppingCardItems.concat(this.state.namePhone)
-                    })
-                  }}
+                  addInShopping={this.addInShopping}
+  
                 />
               ) : (
                 <Catalog
-                  phones={this.state.phones}
-                  onPhoneSelected={(phoneName) => {
-                    this.setState({
-                      selectedPhone: getById(phoneName),
-                      namePhone: phoneName
-                    });
-                  }}
-                  addInShopping={(phoneName) => {
-                    this.setState({
-                      shoppingCardItems: this.state.shoppingCardItems.concat(phoneName)
-                    })
-                  }}
+                    phones={this.state.phones}
+                    addInShopping={this.addInShopping}
+                    removeItem={this.removeItem}
+                    selectedPhone={this.selectedPhone}
                 />
               ) }
             </div>

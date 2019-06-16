@@ -10,15 +10,17 @@ class ShoppingCart extends React.Component {
 
   render(){
     const { removeItem, cards } = this.props;
+        
     return (
       <section>
-        <p className='tittle_shoping_card'>Shopping Cart: {cards ? cards.length : 0} Items</p>
+        <p className='tittle_shoping_card'>Shopping Cart:  Items</p>
         <ul className='shopingCardList'>
           {
-            cards && cards.map((el,idx) => (
+             Object.keys(cards).map((el,idx) => (
               <li key={idx} className='shopingCardItem'>
-                <span className='shopinCardName'>{el}</span>
-                <button onClick={() => removeItem(idx)} className='removeButn'>Remove</button>
+                {console.log("EL: ", )}
+                <span className='shopinCardName'>{el}:({cards[el]})</span>
+                <button onClick={() => removeItem(el)} className='removeButn'>Remove</button>
               </li>
             ))
           }

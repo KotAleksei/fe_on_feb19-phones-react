@@ -1,25 +1,20 @@
 import React from 'react';
 
 class Catalog extends React.Component {
-  // constructor(props){
-  //   super(props);
-  //   this.state = {
 
-  //   }
-  // }
   render() {
-    const { phones, onPhoneSelected, addInShopping } = this.props;
-    console.log("CATALOG: ", this.props);
+    const { phones, selectedPhone, addInShopping } = this.props;
+    // console.log("CATALOG: ", phones);
     return (
       <ul className="phones">
   
-        { phones.map(phone => (
+        {  phones.map(phone => (
           <li className="thumbnail" key={phone.id} >
             <a
               href={'#' + phone.id}
               className="thumb"
               onClick={() => {
-                onPhoneSelected(phone.name)
+                selectedPhone(phone.id)
               }}
             >
               <img
@@ -29,15 +24,18 @@ class Catalog extends React.Component {
             </a>
   
             <div className="phones__btn-buy-wrapper">
-              <a className="btn btn-success" onClick={() => addInShopping(phone.name)}>
+              <a className="btn btn-success" 
+                onClick={() => {
+                  addInShopping(phone.name);
+                }}>
                 Add
               </a>
             </div>
   
             <a
-              href={'#' + phone.id}
+              href={`#${phone.id}`}
               onClick={() => {
-                onPhoneSelected(phone.name)
+                selectedPhone(phone.id);
               }}
             >
               {phone.name}
