@@ -28,7 +28,6 @@ class App extends React.Component {
     this.setState({
       shoppingCardItems: copy
     })
-    console.log('SLPH: ', count);
   }
   addInShopping = (phoneID) => {
     const copy = { ...this.state.shoppingCardItems },
@@ -42,7 +41,6 @@ class App extends React.Component {
     this.setState({
       selectedPhone: getById(this.state.phones, phoneID),
     });
-    console.log(getById(this.state.phones, phoneID));
   }
   render() {
     return (

@@ -1,22 +1,41 @@
+// let img = new Image();
+// img.src = 'img/phones/motorola-atrix-4g.5.jpg';
+// img.onload = function(){console.log('картинка существует')};
+// img.onerror = function(){console.log('картинка не существует')};
+
+
+
 export const getById = (data, phoneId) => {
-
+ 
   const [ selectedPhone ] = data.filter(phone => phone.id === phoneId),
-    id = `${selectedPhone.id}`;
-    console.log('getByID: ',phoneId, selectedPhone.id);
+    id = `${selectedPhone.id}`,
+    imagePaths = [];
+  for (let i = 0; i < 6; i++){
+    const src = `img/phones/${id}.${i}.jpg`,
+      checkImage = path =>
+        new Promise(resolve => {
+            const img = new Image();
+            img.src = src;
+            img.onload = () => resolve({path, status: 'ok'});
+            img.onerror = () => resolve({path, status: 'error'});
+            imagePaths.push(src); // kostill, TODO FIX
+        });
 
-
+    checkImage(src) 
+      // .then(resp => { 
+      //   if(resp.status === 'ok'){
+      //     imagePaths.push(src);
+      //     console.log( imagePaths);
+      //   }
+    // });
+    
+  }
+  
+  
   return {
     "description": `${selectedPhone.snippet}`,
     "id": id,
-    "images": [
-      `img/phones/${id}.0.jpg`,
-      `img/phones/${id}.1.jpg`,
-      `img/phones/${id}.2.jpg`,
-      `img/phones/${id}.3.jpg`,
-      `img/phones/${id}.4.jpg`,
-      `img/phones/${id}.5.jpg`,
-      `img/phones/${id}.6.jpg`,
-    ],
+    "images": [...imagePaths],
     "name": `${selectedPhone.name}`,
   };
 };

@@ -4,20 +4,27 @@ export class Viewer extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        mainPhoto: this.props.phone.images[0]
+        mainPhoto: this.props.phone.images[0],
+        imagesUrl: []
       }
-  
     }
+
     handleClick(index) {
-      console.log(index);
       this.setState({
         mainPhoto: this.props.phone.images[index]
       })
     }
+
+    componentDidMount () { // don't work =(
+      const {phone: { images } } = this.props;
+      this.setState({
+        imagesUrl: images
+      })
+    }
     render() {
-      const { onBack, phone: { name, description, images }, addInShopping } = this.props,
-        { mainPhoto } = this.state;
-        console.log('VIEWER: ', this.props.phone);
+      const { onBack, phone: { name, description }, addInShopping } = this.props,
+        { mainPhoto } = this.state,  images  = [ ...this.state.imagesUrl ];
+        console.log("VEV: ", images);
       return (
         <div>
           <img className="phone" src={mainPhoto} alt='Main_photoPhone' />
@@ -30,7 +37,7 @@ export class Viewer extends React.Component {
           <p>{description}</p>
   
           <ul className="phone-thumbs">
-            { images.map((imageUrl,index) => (
+            { images.map((imageUrl,index) => ( 
               <li key={index}>
                 <img 
                   src={imageUrl} 
