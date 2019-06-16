@@ -66,7 +66,6 @@ class App extends React.Component {
                     });
                   }}
                   addInShopping={this.addInShopping}
-  
                 />
               ) : (
                 <Catalog

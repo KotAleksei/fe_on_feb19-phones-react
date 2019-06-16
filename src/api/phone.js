@@ -1,9 +1,3 @@
-// let img = new Image();
-// img.src = 'img/phones/motorola-atrix-4g.5.jpg';
-// img.onload = function(){console.log('картинка существует')};
-// img.onerror = function(){console.log('картинка не существует')};
-
-
 
 export const getById = (data, phoneId) => {
  
