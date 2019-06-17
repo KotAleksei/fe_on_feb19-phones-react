@@ -10,10 +10,10 @@ class ShoppingCart extends React.Component {
 
   render(){
     const { removeItem, cards } = this.props;
-        
+        Object.keys(cards).map(el => console.log(cards[el]));
     return (
       <section>
-        <p className='tittle_shoping_card'>Shopping Cart: {Object.keys(cards).length} Items</p>
+        <p className='tittle_shoping_card'>Shopping Cart: { Object.keys(cards).reduce((sum, el) => (cards[el] + sum), 0)} Items</p>
         <ul className='shopingCardList'>
           {
              Object.keys(cards).map((el,idx) => (
