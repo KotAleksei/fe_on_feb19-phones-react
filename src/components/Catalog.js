@@ -1,14 +1,13 @@
 import React from 'react';
 
-class Catalog extends React.Component {
-
-  render() {
-    const { phones, selectedPhone, addInShopping } = this.props;
-    // console.log("CATALOG: ", phones);
+const  Catalog = (props) => {
+    const { phones, selectedPhone, addInShopping, searchEl } = props,
+      phonesToShow =  phones.filter(phone => phone.name.toLowerCase().includes(searchEl.toLowerCase()));
+      
     return (
       <ul className="phones">
   
-        {  phones.map(phone => (
+        {  phonesToShow.map(phone => (
           <li className="thumbnail" key={phone.id} >
             <a
               href={'#' + phone.id}
@@ -46,7 +45,6 @@ class Catalog extends React.Component {
         )) }
       </ul>
     );
-  }
 };
 
 export default Catalog;

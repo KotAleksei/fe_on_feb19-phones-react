@@ -16,12 +16,13 @@ class App extends React.Component {
     this.state = {
       phones: getAll(),
       selectedPhone: null,
-      shoppingCardItems: {}
+      shoppingCardItems: {},
+      searchEl: ''
     };
   }
   removeItem = (phoneID) => {
-    const copy = { ...this.state.shoppingCardItems };
-    let count = copy[phoneID] || 0;
+    const copy = { ...this.state.shoppingCardItems },
+     count = copy[phoneID] || 0;
       if( count > 1)
         --copy[phoneID];
       else 
@@ -50,7 +51,11 @@ class App extends React.Component {
       phones: copy
     })
   }
-  
+  searchEl = (value) => {
+    this.setState({
+      searchEl: value
+    })
+  }
   componentDidMount() {
     this.setState({
       phones: this.state.phones.sort(sortByName)
@@ -63,11 +68,13 @@ class App extends React.Component {
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-2">
-              <Filter sort={this.sortCards}/>
+              <Filter 
+                sortCards={this.sortCards}
+                searchEl={this.searchEl}
+                />
               <ShoppingCart 
                 cards={this.state.shoppingCardItems}
                 removeItem={this.removeItem}
-
               />
             </div>
 
@@ -88,6 +95,7 @@ class App extends React.Component {
                     addInShopping={this.addInShopping}
                     removeItem={this.removeItem}
                     selectedPhone={this.selectedPhone}
+                    searchEl={this.state.searchEl}
                 />
               ) }
             </div>

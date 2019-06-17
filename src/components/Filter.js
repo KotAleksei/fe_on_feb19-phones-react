@@ -5,12 +5,12 @@ const Filter = (props) => {
     <section>
       <p>
         Search:
-        <input />
+        <input onChange={el => props.searchEl(el.target.value)}/>
       </p>
 
       <p>
         Sort by:
-        <select onChange={(el) => props.sort(el.target.value)} >
+        <select onChange={el => props.sortCards(el.target.value)} >
           <option value="name" >Alphabetical</option>
           <option value="age">Newest</option>
         </select>

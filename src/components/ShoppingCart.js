@@ -18,7 +18,6 @@ class ShoppingCart extends React.Component {
           {
              Object.keys(cards).map((el,idx) => (
               <li key={idx} className='shopingCardItem'>
-                
                 <span className='shopinCardName'>{el} ({cards[el]})</span>
                 <button onClick={() => removeItem(el)} className='removeButn'>Remove</button>
               </li>

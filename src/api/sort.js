@@ -1,4 +1,4 @@
-export const  sortByAge = (ObjA, ObjB) =>  ObjB.age - ObjA.age;
+export const  sortByAge = (ObjA, ObjB) =>  ObjA.age - ObjB.age;
 
 export const sortByName = (ObjA, ObjB) =>  {
     const a = ObjA.name.toLowerCase(),

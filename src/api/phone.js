@@ -15,11 +15,11 @@ export const getById = (data, phoneId) => {
         });
 
     checkImage(src) 
-      .then(resp => { 
-        if(resp.status === 'ok'){
-          // imagePaths.push(src);
-        }
-    });
+    //   .then(resp => { 
+    //     if(resp.status === 'ok'){
+    //       imagePaths.push(src);
+    //     }
+    // });
   }
   
   

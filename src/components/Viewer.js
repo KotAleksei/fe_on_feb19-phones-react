@@ -4,8 +4,7 @@ export class Viewer extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        mainPhoto: this.props.phone.images[0],
-        imagesUrl: []
+        mainPhoto: this.props.phone.images[0]
       }
     }
 
@@ -14,17 +13,10 @@ export class Viewer extends React.Component {
         mainPhoto: this.props.phone.images[index]
       })
     }
-    // componentDidMount() {
-    //   const images = this.props.phone.images;
-    //   this.setState({
-    //     imagesUrl: images
-    //   })
-    // }
 
     render() {
       const { onBack, phone: { name, description, images }, addInShopping } = this.props,
         { mainPhoto } = this.state; 
-        console.log("VEV: ", images);
       return (
         <div>
           <img className="phone" src={mainPhoto} alt='Main_photoPhone' />
