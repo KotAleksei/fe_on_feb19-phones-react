@@ -1,4 +1,3 @@
-
 export const getById = (data, phoneId) => {
  
   const [ selectedPhone ] = data.filter(phone => phone.id === phoneId),
@@ -16,13 +15,11 @@ export const getById = (data, phoneId) => {
         });
 
     checkImage(src) 
-      // .then(resp => { 
-      //   if(resp.status === 'ok'){
-      //     imagePaths.push(src);
-      //     console.log( imagePaths);
-      //   }
-    // });
-    
+      .then(resp => { 
+        if(resp.status === 'ok'){
+          // imagePaths.push(src);
+        }
+    });
   }
   
   
@@ -31,6 +28,7 @@ export const getById = (data, phoneId) => {
     "id": id,
     "images": [...imagePaths],
     "name": `${selectedPhone.name}`,
+    "age": `${selectedPhone.age}`
   };
 };
 

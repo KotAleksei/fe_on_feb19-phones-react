@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Filter = () => {
+const Filter = (props) => {
   return (
     <section>
       <p>
@@ -10,8 +10,8 @@ const Filter = () => {
 
       <p>
         Sort by:
-        <select>
-          <option value="name">Alphabetical</option>
+        <select onChange={(el) => props.sort(el.target.value)} >
+          <option value="name" >Alphabetical</option>
           <option value="age">Newest</option>
         </select>
       </p>

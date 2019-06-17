@@ -5,6 +5,7 @@ import ShoppingCart from './components/ShoppingCart'
 import Filter from './components/Filter'
 import Catalog from './components/Catalog'
 import { Viewer } from './components/Viewer';
+import { sortByAge, sortByName } from './api/sort';
 
 import './App.css';
 
@@ -37,18 +38,32 @@ class App extends React.Component {
       shoppingCardItems: copy
     });
   }
-  selectedPhone = (phoneID) => {
+  selectedPhone =  (phoneID) => {
     this.setState({
       selectedPhone: getById(this.state.phones, phoneID),
     });
   }
+  sortCards = (value) => {
+    let  copy  = [ ...this.state.phones ] ;
+    value === 'age' ? copy.sort(sortByAge) : copy.sort(sortByName)
+    this.setState({
+      phones: copy
+    })
+  }
+  
+  componentDidMount() {
+    this.setState({
+      phones: this.state.phones.sort(sortByName)
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-2">
-              <Filter />
+              <Filter sort={this.sortCards}/>
               <ShoppingCart 
                 cards={this.state.shoppingCardItems}
                 removeItem={this.removeItem}
