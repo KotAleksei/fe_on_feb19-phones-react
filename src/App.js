@@ -39,10 +39,10 @@ class App extends React.Component {
       shoppingCardItems: copy
     });
   }
-  selectedPhone =  (phoneID) => {
-    this.setState({
-      selectedPhone: getById(this.state.phones, phoneID),
-    });
+  selectedPhone = (phoneID) => {
+    getById(this.state.phones, phoneID).then(response => this.setState({
+      selectedPhone: response
+    }));
   }
   sortCards = (value) => {
     let  copy  = [ ...this.state.phones ] ;

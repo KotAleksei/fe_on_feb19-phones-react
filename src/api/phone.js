@@ -1,35 +1,34 @@
-export const getById = (data, phoneId) => {
+export const getById = async (data, phoneId) => {
  
   const [ selectedPhone ] = data.filter(phone => phone.id === phoneId),
     id = `${selectedPhone.id}`,
     imagePaths = [];
+
   for (let i = 0; i < 6; i++){
     const src = `img/phones/${id}.${i}.jpg`,
-      checkImage = path =>
+      checkImage = () =>
         new Promise(resolve => {
             const img = new Image();
             img.src = src;
-            img.onload = () => resolve({path, status: 'ok'});
-            img.onerror = () => resolve({path, status: 'error'});
-            imagePaths.push(src); // kostill, TODO FIX
+            img.onload = () => resolve({status: 'ok'});
+            img.onerror = () => resolve({status: 'error'});
+        }).then(resp => { 
+          if(resp.status === 'ok'){
+            imagePaths.push(src);
+          }
         });
 
-    checkImage(src) 
-    //   .then(resp => { 
-    //     if(resp.status === 'ok'){
-    //       imagePaths.push(src);
-    //     }
-    // });
+        await checkImage(src);
   }
-  
-  
-  return {
-    "description": `${selectedPhone.snippet}`,
-    "id": id,
-    "images": [...imagePaths],
-    "name": `${selectedPhone.name}`,
-    "age": `${selectedPhone.age}`
-  };
+
+
+    return {
+      "description": `${selectedPhone.snippet}`,
+      "id": id,
+      "images": [...imagePaths],
+      "name": `${selectedPhone.name}`,
+      "age": `${selectedPhone.age}`
+    }
 };
 
 export const getAll = () => {
