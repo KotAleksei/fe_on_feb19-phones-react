@@ -22,7 +22,7 @@ class App extends React.Component {
   }
   removeItem = (phoneID) => {
     const copy = { ...this.state.shoppingCardItems },
-     count = copy[phoneID] || 0;
+          count = copy[phoneID] || 0;
       if( count > 1)
         --copy[phoneID];
       else 

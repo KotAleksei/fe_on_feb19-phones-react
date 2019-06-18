@@ -1,24 +1,24 @@
 export const getById = async (data, phoneId) => {
  
   const [ selectedPhone ] = data.filter(phone => phone.id === phoneId),
-    id = `${selectedPhone.id}`,
-    imagePaths = [];
+        id = `${selectedPhone.id}`,
+        imagePaths = [];
 
   for (let i = 0; i < 6; i++){
     const src = `img/phones/${id}.${i}.jpg`,
-      checkImage = () =>
-        new Promise(resolve => {
-            const img = new Image();
-            img.src = src;
-            img.onload = () => resolve({status: 'ok'});
-            img.onerror = () => resolve({status: 'error'});
-        }).then(resp => { 
-          if(resp.status === 'ok'){
-            imagePaths.push(src);
-          }
-        });
+          checkImage = (path) =>
+            new Promise(resolve => {
+                const img = new Image();
+                img.src = src;
+                img.onload = () => resolve({path, status: 'ok'});
+                img.onerror = () => resolve({path, status: 'error'});
+            }).then(resp => { 
+                if(resp.status === 'ok'){
+                  imagePaths.push(src);
+                }
+            });
 
-        await checkImage(src);
+    await checkImage(src);
   }
 
 
