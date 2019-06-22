@@ -7,16 +7,16 @@ export const getById = async (data, phoneId) => {
   for (let i = 0; i < 6; i++){
     const src = `img/phones/${id}.${i}.jpg`,
           checkImage = (path) =>
-            new Promise(resolve => {
+            new Promise((resolve, reject) => {
                 const img = new Image();
                 img.src = src;
                 img.onload = () => resolve({path, status: 'ok'});
-                img.onerror = () => resolve({path, status: 'error'});
+                img.onerror = () => reject({path, status: 'error'});
             }).then(resp => { 
                 if(resp.status === 'ok'){
                   imagePaths.push(src);
                 }
-            });
+            }).catch(el => el); // do nothing
 
     await checkImage(src);
   }
