@@ -57,8 +57,10 @@ class App extends React.Component {
     })
   }
   componentDidMount() {
+    const copy = [ ...this.state.phones ];
+    copy.sort(sortByName);
     this.setState({
-      phones: this.state.phones.sort(sortByName)
+      phones: copy
     })
   }
 

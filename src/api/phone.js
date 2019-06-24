@@ -1,12 +1,12 @@
 export const getById = async (data, phoneId) => {
  
-  const [ selectedPhone ] = data.filter(phone => phone.id === phoneId),
+  const  selectedPhone  = data.find(phone => phone.id === phoneId),
         id = `${selectedPhone.id}`,
         imagePaths = [];
 
   for (let i = 0; i < 6; i++){
-    const src = `img/phones/${id}.${i}.jpg`,
-          checkImage = (path) =>
+    const src = `img/phones/${id}.${i}.jpg`;
+    const checkImage = (path) =>
             new Promise((resolve, reject) => {
                 const img = new Image();
                 img.src = src;

@@ -106,9 +106,6 @@ h1 {
 .removeButn {
   display: block;
   margin: 5px auto;
-  /* background-color: #330000;
-  border: none;
-  color: #CDB99C; */
 }
 .removeButn:focus {
   outline: none;
