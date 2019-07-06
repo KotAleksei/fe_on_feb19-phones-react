@@ -10,7 +10,7 @@ const  Catalog = (props) => {
         {  phonesToShow.map(phone => (
           <li className="thumbnail" key={phone.id} >
             <a
-              href={'#' + phone.id}
+              href={`#${phone.id}`}
               className="thumb"
               onClick={() => {
                 selectedPhone(phone.id)
