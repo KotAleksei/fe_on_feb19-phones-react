@@ -15,6 +15,8 @@ export const getById = async (data, phoneId) => {
             }).then(resp => { 
                 if(resp.status === 'ok'){
                   imagePaths.push(src);
+                } else {
+                  return new Error(resp.status)
                 }
             }).catch(el => el); // do nothing
 
